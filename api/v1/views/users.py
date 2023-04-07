@@ -11,11 +11,10 @@ from api.v1.views import app_views
 @app_views.route('/users', strict_slashes=False)
 def getusers():
     """retrieve all users"""
-    users = storage.all("User").values()
-    user = []
-        for k in users:
-            user.append(user[k].to_dict())
-        return jsonify(user)
+    users = []
+    for user in storage.all("User").values():
+        users.append(user.to_dict())
+    return jsonify(users)
 
 
 @app_views.route('/users', methods=['GET', 'POST'], strict_slashes=False)
