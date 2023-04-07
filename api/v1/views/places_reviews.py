@@ -20,7 +20,7 @@ def getreviews(place_id):
     reviews = []
     for review in place.reviews:
         reviews.append(review.to_dict())
-    return jsonify(reviews), 200
+    return jsonify(reviews)
 
 
 @app_views.route('/reviews/<string:review_id>', methods=['GET'],
@@ -30,7 +30,7 @@ def getreview(review_id):
     review = storage.get("Review", review_id)
     if review is None:
         abort(404)
-    return jsonify(review.to_dict()), 200
+    return jsonify(review.to_dict())
 
 
 @app_views.route('/reviews/<string:review_id>', methods=['DELETE'],
@@ -42,7 +42,7 @@ def deletereview(review_id):
         abort(404)
     review.delete()
     storage.save()
-    return (jsonify({})), 200
+    return (jsonify({}))
 
 
 @app_views.route('/places/<string:place_id>/reviews', methods=['POST'],
@@ -82,4 +82,4 @@ def putreview(review_id):
                         'created_at', 'updated_at']:
             setattr(review, attr, val)
     review.save()
-    return jsonify(review.to_dict()), 200
+    return jsonify(review.to_dict())
