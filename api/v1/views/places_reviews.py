@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
 """new view for Review object that handles all default RESTFul API actions"""
 
 from api.v1.views import app_views
